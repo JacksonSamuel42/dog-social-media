@@ -33,7 +33,7 @@ export function GET_USER(token) {
 			method: 'GET',
             headers: {
 				Authorization: `Bearer ${token}`
-			} 
+			}
 		},
 	};
 }
