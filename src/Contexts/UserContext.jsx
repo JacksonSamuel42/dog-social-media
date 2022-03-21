@@ -23,8 +23,8 @@ export const UserStorage = ({children}) => {
 	const getUser = async (token) => {
 		const {url, options} = GET_USER(token);
 		const response = await fetch(url, options);
-		const data = await response.json();
-		setData(data);
+		const json = await response.json();
+		setData(json);
 		setLogin(true);
 	};
 
@@ -58,18 +58,21 @@ export const UserStorage = ({children}) => {
 					const response = await fetch(url, options)
 					if(!response.ok) throw new Error('Token inválido')
 					await getUser(token)
+					navigate('/conta')
 				}catch(error){
 					userLogout()
 				}finally{
 					setLoading(false)
 				}
+			}else{
+				setLogin(false)
 			}
 		}
 		autoLogin()
 	}, [userLogout]);
 
 	return (
-		<UserContext.Provider value={{userLogin, data, userLogout, loading, error}}>
+		<UserContext.Provider value={{userLogin, data, userLogout, loading, error, login}}>
 			{children}
 		</UserContext.Provider>
 	);

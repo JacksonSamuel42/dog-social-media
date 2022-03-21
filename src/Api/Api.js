@@ -37,3 +37,16 @@ export function GET_USER(token) {
 		},
 	};
 }
+
+export function GET_POST(body) {
+	return {
+		url: `${URL}/api/user`,
+		options: {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body)
+		},
+	};
+}
