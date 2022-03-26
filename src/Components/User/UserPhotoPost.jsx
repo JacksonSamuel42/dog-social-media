@@ -6,7 +6,7 @@ import Button from '../Forms/Button/Button';
 import useForm from '../../Hooks/useForm';
 import useFetch from '../../Hooks/useFetch';
 import Error from '../../Helpers/Error'
-import {PHOTO_POST} from '../../Api/Api';
+import {PHOTOS_POST} from '../../Api/Api';
 
 const UserPhotoPost = () => {
 	const nome = useForm('');
@@ -29,7 +29,7 @@ const UserPhotoPost = () => {
 		formData.append('idade', idade.value);
 
 		const token = window.localStorage.getItem('token');
-		const {url, options} = PHOTO_POST(formData, token);
+		const {url, options} = PHOTOS_POST(formData, token);
 		request(url, options);
 	};
 
