@@ -26,7 +26,7 @@ export function TOKEN_VALIDATE_POST(token) {
 	};
 }
 
-export function GET_USER(token) {
+export function USER_GET(token) {
 	return {
 		url: `${URL}/api/user`,
 		options: {
@@ -38,7 +38,7 @@ export function GET_USER(token) {
 	};
 }
 
-export function GET_POST(body) {
+export function USER_POST(body) {
 	return {
 		url: `${URL}/api/user`,
 		options: {

@@ -12,26 +12,24 @@ import ProtectedRoute from './Helpers/ProtectedRoute';
 
 const App = () => {
 	return (
-		<div>
-			<Router>
-				<UserStorage>
-					<Header />
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='login/*' element={<Login />} />
-						<Route
-							path='conta/*'
-							element={
-								<ProtectedRoute>
-									<User />
-								</ProtectedRoute>
-							}
-						/>
-					</Routes>
-					<Footer />
-				</UserStorage>
-			</Router>
-		</div>
+		<Router>
+			<UserStorage>
+				<Header />
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='login/*' element={<Login />} />
+					<Route
+						path='conta/*'
+						element={
+							<ProtectedRoute>
+								<User />
+							</ProtectedRoute>
+						}
+					/>
+				</Routes>
+				<Footer />
+			</UserStorage>
+		</Router>
 	);
 };
 

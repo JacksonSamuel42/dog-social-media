@@ -1,5 +1,5 @@
 import React from 'react'
-import { GET_POST } from '../../Api/Api'
+import { USER_POST } from '../../Api/Api'
 import { UserContext } from '../../Contexts/UserContext'
 import Error from '../../Helpers/Error'
 import useFetch from '../../Hooks/useFetch'
@@ -18,7 +18,7 @@ const LoginCreate = () => {
     e.preventDefault();
 
     if(username.validate() && password.validate() && email.validate()){
-			const {url, options} = GET_POST({
+			const {url, options} = USER_POST({
         username: username.value,
         email: email.value,
         password: password.value,
@@ -26,7 +26,6 @@ const LoginCreate = () => {
 
       const {response} = await request(url, options);
       if(!response.ok) userLogin(username.value, password.value)
-      console.log(response);
 		}
   }
 
