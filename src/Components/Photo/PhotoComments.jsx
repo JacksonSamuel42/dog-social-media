@@ -6,7 +6,7 @@ import styles from './PhotoComments.module.css'
 const PhotoComments = (props) => {
   const [comments,  setComments] = useState(() => props.comments)
   const commentSection = React.useRef()
-  const {login} = React.useContext(UserContext) 
+  const {login} = React.useContext(UserContext)
 
   React.useEffect(() => {
     commentSection.current.scrollTop = commentSection.current.scrollHeight;
@@ -16,7 +16,7 @@ const PhotoComments = (props) => {
     <>
       <ul ref={commentSection} className={styles.comments}>
         {comments.map(comment => (
-          <li key={comment.comment_ID}>
+          <li className={styles.commentsList} key={comment.comment_ID}>
             <b>{comment.comment_author}: </b>
             <span>{comment.comment_content}</span>
           </li>
