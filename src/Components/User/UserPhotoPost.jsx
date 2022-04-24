@@ -1,24 +1,25 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styles from './UserPhotoPost.module.css';
 import Input from '../Forms/Input/Input';
 import Button from '../Forms/Button/Button';
 import useForm from '../../Hooks/useForm';
 import useFetch from '../../Hooks/useFetch';
 import Error from '../../Helpers/Error'
-import {PHOTOS_POST} from '../../Api/Api';
+import { PHOTOS_POST } from '../../Api/Api';
+import Head from '../../Helpers/Head';
 
 const UserPhotoPost = () => {
 	const nome = useForm('');
 	const peso = useForm('number');
 	const idade = useForm('number');
 	const [img, setImg] = React.useState({});
-	const {data, error, loading, request} = useFetch();
-  const navigate = useNavigate()
+	const { data, error, loading, request } = useFetch();
+	const navigate = useNavigate()
 
-  React.useEffect(() => {
-    if(data) navigate('/conta')
-  }, [data, navigate])
+	React.useEffect(() => {
+		if (data) navigate('/conta')
+	}, [data, navigate])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -29,11 +30,11 @@ const UserPhotoPost = () => {
 		formData.append('idade', idade.value);
 
 		const token = window.localStorage.getItem('token');
-		const {url, options} = PHOTOS_POST(formData, token);
+		const { url, options } = PHOTOS_POST(formData, token);
 		request(url, options);
 	};
 
-	const handleImgChange = ({target}) => {
+	const handleImgChange = ({ target }) => {
 		setImg({
 			preview: URL.createObjectURL(target.files[0]),
 			raw: target.files[0],
@@ -42,6 +43,7 @@ const UserPhotoPost = () => {
 
 	return (
 		<section className={` animeLeft ${styles.photoPost}`}>
+			<Head title="Poste sua foto" description=""/>
 			<form onSubmit={handleSubmit}>
 				<Input label='Nome' type='text' name='nome' {...nome} />
 				<Input label='peso' type='number' name='peso' {...peso} />
@@ -52,13 +54,13 @@ const UserPhotoPost = () => {
 				) : (
 					<Button>Enviar</Button>
 				)}
-        <Error error={error}/>
+				<Error error={error} />
 			</form>
 			<div>
 				{img.preview && (
 					<div
 						className={styles.preview}
-						style={{backgroundImage: `url('${img.preview}')`}}></div>
+						style={{ backgroundImage: `url('${img.preview}')` }}></div>
 				)}
 			</div>
 		</section>
